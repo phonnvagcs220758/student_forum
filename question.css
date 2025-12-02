@@ -1,0 +1,301 @@
+/* =========================================
+   RESET & BASE STYLES
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #F8F9FA; /* Light forum background */
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+    
+    /* GRID LAYOUT: Header top, Sidebar left, Content right */
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "nav    main"
+        "footer footer";
+    grid-template-columns: 260px 1fr; /* Fixed Sidebar width, Flexible Main */
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* =========================================
+   HEADER (Area: header)
+   ========================================= */
+header {
+    grid-area: header;
+    background-color: #333333; /* Dark top bar from image */
+    color: #fff;
+    padding: 0 30px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Admin/User area headers can share the same style */
+#admin h1 {
+    color: #f1f1f1;
+}
+
+/* =========================================
+   SIDEBAR NAVIGATION (Area: nav)
+   ========================================= */
+nav {
+    grid-area: nav;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    padding: 30px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+nav li {
+    width: 100%;
+}
+
+nav a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    padding: 12px 25px;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect mimicking the "Active Category" style */
+nav a:hover {
+    background-color: #f0f7fd;
+    color: #009FDC; /* Axure Blue */
+    border-left-color: #009FDC;
+}
+
+/* =========================================
+   MAIN CONTENT (Area: main)
+   ========================================= */
+main {
+    grid-area: main;
+    padding: 40px 50px;
+    background-color: #fff; /* Main content area white */
+    max-width: 1200px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+/* =========================================
+   FORUM THREAD CARDS (Styling blockquote)
+   ========================================= */
+/* The PHP outputs questions in <blockquote> tags. 
+   We will style these to look like the "Thread Cards" in the image. */
+
+blockquote {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-left: 4px solid #009FDC; /* The blue category strip */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-style: normal; /* Override default italic */
+}
+
+blockquote:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* The Question Text */
+blockquote {
+    font-size: 16px;
+    color: #222;
+    font-weight: 600;
+}
+
+/* Images inside questions */
+blockquote img {
+    display: block;
+    margin-top: 15px;
+    max-width: 150px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+/* Action Links (Edit/Delete) inside Cards */
+blockquote a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #009FDC;
+    font-weight: bold;
+    margin-right: 10px;
+    text-transform: uppercase;
+}
+
+blockquote a:hover {
+    text-decoration: underline;
+}
+
+/* Forms inside cards (Delete button) */
+blockquote form {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+    margin: 0;
+}
+
+blockquote input[type="submit"] {
+    background: none;
+    color: #d9534f;
+    border: none;
+    padding: 0;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
+blockquote input[type="submit"]:hover {
+    text-decoration: underline;
+    background: none;
+}
+
+/* =========================================
+   FORMS (Add/Edit pages)
+   ========================================= */
+form {
+    background: #f9f9f9;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 600px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+input[type="text"]:focus, 
+textarea:focus {
+    border-color: #009FDC;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 159, 220, 0.1);
+}
+
+/* Primary Buttons */
+input[type="submit"] {
+    background-color: #009FDC; /* Axure Blue */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0081b3;
+}
+
+/* =========================================
+   LISTS (Modules/Users Management)
+   ========================================= */
+/* Targeting lists inside main only */
+main ul {
+    list-style: none;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+main ul li {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main ul li:last-child {
+    border-bottom: none;
+}
+
+main ul li form {
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+/* =========================================
+   FOOTER (Area: footer)
+   ========================================= */
+footer {
+    grid-area: footer;
+    background-color: #fff;
+    color: #999;
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+}
+
